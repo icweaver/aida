@@ -47,7 +47,17 @@ end
 # ╔═╡ 648532d9-bc2c-4046-ba57-2026770342d8
 md"""
 !!! note
-	Seems to be a known bug: <https://github.com/pyFFTW/pyFFTW/issues/294>
+	There seems to be a [known bug](https://github.com/pyFFTW/pyFFTW/issues/294) in `pyfftw=0.13` which throws the following runtime error:
+
+	```
+	RuntimeError: Undefined plan with nthreads. This is a bug
+	Exception ignored in: 'pyfftw.pyfftw._fftw_plan_with_nthreads_null'
+	Traceback (most recent call last):
+	  File "/home/mango/Projects/aida/.CondaPkg/env/lib/python3.11/site-packages/pyfftw/builders/_utils.py", line 285, in _Xfftn
+	RuntimeError: Undefined plan with nthreads. This is a bug
+	```
+
+	so just using `pyfftw=0.12` for now until this is resolved upstream.
 """
 
 # ╔═╡ cb066498-91c0-41c5-b760-35243d10577c
@@ -55,9 +65,9 @@ TableOfContents()
 
 # ╔═╡ Cell order:
 # ╟─0900210a-1c2b-43b3-93f1-1b466d850db2
-# ╠═96cf69f9-6820-4789-94bc-994a371da371
+# ╟─96cf69f9-6820-4789-94bc-994a371da371
 # ╠═8d670e8a-eaee-4b09-ad32-733a94ba04e3
-# ╟─7ea294e9-b434-4eae-b41b-cd6b9ec8426f
+# ╠═7ea294e9-b434-4eae-b41b-cd6b9ec8426f
 # ╟─648532d9-bc2c-4046-ba57-2026770342d8
 # ╠═bed00d4e-9fb8-11ed-0656-47d6e925a240
 # ╟─cb066498-91c0-41c5-b760-35243d10577c

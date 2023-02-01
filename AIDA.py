@@ -68,6 +68,13 @@ usage: priithon AIDA.py   -S settings.py
 def main():
     ParseCommandLine()
     RunAIDA()
+    with open("used_settings.csv", "w") as f:
+        ignore = ['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__file__', '__cached__', '__builtins__']
+        settings = {k:v for (k, v) in Set.__dict__.items() if k not in ignore}
+
+        for (k, v) in settings.items():
+            f.write(f"{k}: {v}\n")
+
 ####
 
 #######  FUNCTION: ParseCommandLine()  #######
