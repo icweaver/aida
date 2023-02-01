@@ -9,7 +9,7 @@ begin
 	import Pkg
 	Pkg.activate(Base.current_project())
 	
-	using AstroImages
+	using AstroImages, PlutoUI, PythonCall
 end
 
 # ╔═╡ 0900210a-1c2b-43b3-93f1-1b466d850db2
@@ -23,14 +23,41 @@ Deconvolution library: <https://juliadsp.org/Deconvolution.jl/stable/>
 Conjugate gradient solver <https://iterativesolvers.julialinearalgebra.org/dev/linear_systems/cg/>
 """
 
-# ╔═╡ 1b7d071a-2682-4e1f-bf5b-1ef260c72270
-img = load("./TitanImages/Results/myopic_Python2.5_230201_064429-myopic/Rpsf_myopic_Python2.5_064429_titanhe_153_IF_scaled.fits")
+# ╔═╡ 96cf69f9-6820-4789-94bc-994a371da371
+md"""
+# FFTW Test
+"""
 
-# ╔═╡ 040be4a8-023b-4ab1-97df-e4fe38d61171
-img2 = load("TitanImages/Results/myopic_Python2.5_230201_064429-myopic/Robj_myopic_Python2.5_064429_titanhe_153_IF_scaled_La0p11528.fits")
+# ╔═╡ 8d670e8a-eaee-4b09-ad32-733a94ba04e3
+@py begin
+	import numpy as np
+	import pyfftw
+end
+
+# ╔═╡ 7ea294e9-b434-4eae-b41b-cd6b9ec8426f
+let
+	# AIDA_Functions.py +108
+	a_ = np.zeros(dtype=np.float64, 8)
+	a_[0] = 1
+	
+	# Should all be ones
+	pyfftw.interfaces.numpy_fft.rfftn(a_).real
+end
+
+# ╔═╡ 648532d9-bc2c-4046-ba57-2026770342d8
+md"""
+!!! note
+	Seems to be a known bug: <https://github.com/pyFFTW/pyFFTW/issues/294>
+"""
+
+# ╔═╡ cb066498-91c0-41c5-b760-35243d10577c
+TableOfContents()
 
 # ╔═╡ Cell order:
-# ╠═0900210a-1c2b-43b3-93f1-1b466d850db2
+# ╟─0900210a-1c2b-43b3-93f1-1b466d850db2
+# ╠═96cf69f9-6820-4789-94bc-994a371da371
+# ╠═8d670e8a-eaee-4b09-ad32-733a94ba04e3
+# ╟─7ea294e9-b434-4eae-b41b-cd6b9ec8426f
+# ╟─648532d9-bc2c-4046-ba57-2026770342d8
 # ╠═bed00d4e-9fb8-11ed-0656-47d6e925a240
-# ╠═1b7d071a-2682-4e1f-bf5b-1ef260c72270
-# ╠═040be4a8-023b-4ab1-97df-e4fe38d61171
+# ╟─cb066498-91c0-41c5-b760-35243d10577c
