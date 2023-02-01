@@ -70,7 +70,7 @@ results_directory = '.'     # (default = '.'
                             # (current working directory))
 
 #>>> WHETHER TO STORE RESULTS IN TIMESTAMPED RESULTS_DIRECTORY
-timestamp_directory_flag = True     # (default = True)
+timestamp_directory_flag = False     # (default = True)
 
 #>>> TYPE OF DECONVOLUTION TO RUN
 #decon_type = 'classical'   # object varies and PSF is fixed

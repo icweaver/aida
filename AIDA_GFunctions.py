@@ -131,6 +131,7 @@ def ImageNoiseWeights(image, baseline=0., sigma_det=None, dtype=np.float64):
     ((1./w).astype(dtype), np.sqrt(sigma_det2))
     """
 
+    print(f"{np.mean(image)=}")
     if sigma_det:
     
         sigma_det2 = sigma_det*sigma_det
@@ -146,7 +147,9 @@ def ImageNoiseWeights(image, baseline=0., sigma_det=None, dtype=np.float64):
                       "lower than the minimum image pixel value"
             raise ValueError(message)
             
+        print(f"{len(neg_pixels)=}")
         mean_neg_pixels = neg_pixels.mean()
+        print(f"{mean_neg_pixels=}")
         ## sigma_det2 is the (constant) gaussian detection error/pixel
         ## from formula sigma_det**2 = 0.5*np.pi*(noise.mean())**2
         sigma_det2 = 0.5*np.pi*(mean_neg_pixels*mean_neg_pixels)
@@ -186,6 +189,7 @@ def ImageNoiseWeights(image, baseline=0., sigma_det=None, dtype=np.float64):
 #         sigma_det2 = sigma_det2_mintheory + 0.001   # value should be greater than minimum or lambda_object will explode
         
 
+    print(f"{sigma_det2=}")
     sigma_photon2 = np.maximum(image-baseline, 0.)
     w = sigma_det2 + sigma_photon2
 

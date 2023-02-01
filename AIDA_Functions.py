@@ -21,6 +21,7 @@
 #  - N (numpy)
 #  - U (useful): nd, max and mmms
 #  - F (fftfuncs): rfft and ndArrD
+import sys
 import numpy as N
 from Priithon_heritage import useful as U
 from Priithon_heritage import fftfuncs as F
@@ -187,7 +188,8 @@ def SetupResultsDirectoryOutputLog():
         os.makedirs(Set.results_directory, mode=0o777)
 
     ## open output log buffer
-    Set.output = Set.results_directory + 'AIDA_' + Set.timestamp + '.log'
+    #Set.output = Set.results_directory + 'AIDA_' + Set.timestamp + '.log'
+    Set.output = Set.results_directory + 'AIDA.log'
 
     if Set.debug == False:
 
@@ -2116,10 +2118,13 @@ def ProcessImageData(index=0):
         
             image = imagefile.copy()
     
+        print(f"{Set.sigma_det=}")
         (Set.image, Set.inv_w, Set.sigma_det, Set.wiener) = \
                 AGF.CalculateImageData(image, background=Set.background, 
                 sigma_det=Set.sigma_det, wiener=Set.initial_object_guess,
                 dtype=Set.dtype) #@ AGF
+        print(f"{Set.sigma_det=}")
+        sys.exit()
 
         ### Set theta
         Set.inv_theta_center = 1. / (CalculateTheta( w=(1./Set.inv_w), \

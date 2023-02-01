@@ -5,8 +5,8 @@ dataset_list: None
 info_level: 2
 memory_usage_level: 0
 terms: (1, 1, 1, 0)
-results_directory: /home/mango/Projects/aida/TitanImages/Results/myopic_Python2.5_230201_083139-myopic/
-timestamp_directory_flag: True
+results_directory: /home/mango/Projects/aida/TitanImages/Results/myopic_Python2.5/
+timestamp_directory_flag: False
 decon_type: myopic
 initial_psf: mean
 precision: double
@@ -86,7 +86,7 @@ imageHdr: SIMPLE  =                    T / conforms to FITS standard            
 path: ./
 fft_type: pyFFTW
 Settings_File: ./AIDA_Settings.py
-start_run_time: 1675269099.7941394
+start_run_time: 1675271670.985682
 dataset_image_prefix_list: ['titanhe_153_IF_scaled']
 dataset_PSF_prefix_list: ['psf_titanhe']
 dataset_label_list: ['myopic_Python2.5']
@@ -100,11 +100,11 @@ dataset_dark_image_list: [None]
 center: None
 original_object_PCG_tolerance: 0.1
 original_PSF_PCG_tolerance: 0.1
-start_setuptime: 1675269099.7944615
-start_localtime: time.struct_time(tm_year=2023, tm_mon=2, tm_mday=1, tm_hour=8, tm_min=31, tm_sec=39, tm_wday=2, tm_yday=32, tm_isdst=0)
-timehms: 083139
-timestamp: 230201_083139-myopic
-output: /home/mango/Projects/aida/TitanImages/Results/myopic_Python2.5_230201_083139-myopic/AIDA_230201_083139-myopic.log
+start_setuptime: 1675271670.9860184
+start_localtime: time.struct_time(tm_year=2023, tm_mon=2, tm_mday=1, tm_hour=9, tm_min=14, tm_sec=30, tm_wday=2, tm_yday=32, tm_isdst=0)
+timehms: 091430
+timestamp: 230201_091430-myopic
+output: /home/mango/Projects/aida/TitanImages/Results/myopic_Python2.5/AIDA.log
 image_directory: /home/mango/Projects/aida/TitanImages/
 imagefilebase: titanhe_153_IF_scaled
 image_format: f
@@ -183,7 +183,7 @@ temp_realFFT_real_single: [[0. 0. 0. ... 0. 0. 0.]
  [0. 0. 0. ... 0. 0. 0.]
  [0. 0. 0. ... 0. 0. 0.]
  [0. 0. 0. ... 0. 0. 0.]]
-start_PSF_processing_time: 1675269099.799382
+start_PSF_processing_time: 1675271670.9894712
 PSF_processing_details: PSF files processed (and cleaned):
 		psf_titanhe_0.fits : #0
 		psf_titanhe_1.fits : #1
@@ -243,7 +243,7 @@ u_floor: 1e-12
 v_floor: 1e-12
 temp_hdr: None
 OTF_deriv_scale: 0.5000019073486328
-PSF_processing_time: 2.42158579826355
+PSF_processing_time: 2.3967227935791016
 sigma_det_array: [None]
 xmax_PSF: 0.19323330993453663
 xmax_object: 207649.9609375
@@ -357,18 +357,18 @@ kernel_lapl: [[-0.08333333 -0.16666667 -0.08333333]
 lambda_object_exp_grid: [-0.]
 theta_exp_grid: [-0.]
 lambda_object_center: 0.01
-cum_CG_time: [ 49.876465  73.326225 123.202675]
+cum_CG_time: [ 53.022057  76.67919  129.70125 ]
 cum_prerun_time: 0.0
-cum_decon_time: 123.42109489440918
+cum_decon_time: 129.9440417289734
 cum_deconvolutions: 1
-extra_time: 0.0015850067138671875
+extra_time: 0.00165557861328125
 cum_CG_itns: [245 456 701]
 cum_CostFunction_itns: [ 580 1438 2018]
 lambda_object: 0.11527937883769536
 lambda_OTF: 3.814697265625e-06
 lambda_PSF: 1.0
-start_time: 1675269102.2455394
-setup_time: 2.451077938079834
+start_time: 1675271673.40873
+setup_time: 2.4227116107940674
 results_shape: (1, 1, 512, 512)
 object_results: [[0. 0. 0. ... 0. 0. 0.]
  [0. 0. 0. ... 0. 0. 0.]
@@ -453,6 +453,6 @@ mu: [[0.00773869 0.00773869 0.0072848  ... 0.0069449  0.00698203 0.00694916]
  [0.00773869 0.0076584  0.00773869 ... 0.00773869 0.00773869 0.00773869]]
 costfunction_type: 0
 J_final: [1.03525934 1.         0.         0.03525934 0.        ]
-evaluationTime: 20.30605740017361
+evaluationTime: 20.56296666463216
 nb_Evaluations: 45
 start: False
