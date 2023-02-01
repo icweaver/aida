@@ -1,0 +1,11 @@
+[deps]
+pip = ""
+cython = ""
+lxml = ""
+matplotlib = ""
+pillow = ""
+gcc = ""
+numpy = ""
+scipy = ""
+astropy = ""
+pyfftw = ""
