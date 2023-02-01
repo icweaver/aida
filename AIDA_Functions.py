@@ -1405,8 +1405,8 @@ def SetupHyperparameterSearch():
     Set.cum_decon_time = 0.
     Set.cum_deconvolutions = 0
     Set.extra_time = 0.
-    Set.cum_CG_itns = N.zeros(shape=3, dtype=N.int)
-    Set.cum_CostFunction_itns = N.zeros(shape=3, dtype=N.int)
+    Set.cum_CG_itns = N.zeros(shape=3, dtype=N.int32)
+    Set.cum_CostFunction_itns = N.zeros(shape=3, dtype=N.int32)
 
     ## set-up hyperparameter estimation flags ###
     if Set.lambda_object_input:
@@ -1904,8 +1904,8 @@ def DeconSingleFrame():
             ProcessImageData(index=i) #@
 
         ### Hyperparameter for loop search (over object hyperparameters)
-        hypersearch_total_CG_itns = N.zeros(shape=3, dtype=N.int)
-        hypersearch_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int)
+        hypersearch_total_CG_itns = N.zeros(shape=3, dtype=N.int32)
+        hypersearch_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int32)
         start_hypersearch_time = time.time()
         results_index = [0,0]
         
@@ -2241,8 +2241,8 @@ def PCG_SingleFrame(results_index):
     optimization_round = 1
     check_object = check_PSF = 'go'
     object_stops = PSF_stops = 0
-    Set.decon_total_CG_itns = N.zeros(shape=3, dtype=N.int)
-    Set.decon_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int)
+    Set.decon_total_CG_itns = N.zeros(shape=3, dtype=N.int32)
+    Set.decon_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int32)
     Set.extra_time = 0.
 
     if Set.terms[0] == 0:       ## stop check_object if no data fidelity term
@@ -3877,8 +3877,8 @@ def DeconMultiFrame():
 
     ###  [[ Hyperparameter For-Loop Search ]]  ###
     ## Set/Reset Hyperparameter search counters/timers
-    hypersearch_total_CG_itns = N.zeros(shape=3, dtype=N.int)
-    hypersearch_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int)
+    hypersearch_total_CG_itns = N.zeros(shape=3, dtype=N.int32)
+    hypersearch_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int32)
     start_hypersearch_time = time.time()
 
     ###  Initialize Hyperparameter Arrays for Multiple Objects
@@ -3946,8 +3946,8 @@ def PCG_MultiFrame():
     Nframes_array_stops = [0,0]
     Set.Nframes_J = N.zeros(shape=(len(Set.image_list),) + (len(Set.terms),), 
             dtype=Set.dtype)
-    Set.decon_total_CG_itns = N.zeros(shape=3, dtype=N.int)
-    Set.decon_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int)
+    Set.decon_total_CG_itns = N.zeros(shape=3, dtype=N.int32)
+    Set.decon_total_CostFunction_itns = N.zeros(shape=3, dtype=N.int32)
 
     ### Set-up arrays and initialize
     Set.PSF_array = Set.PSF_results # synonyms (see ResultsArrayPrep)
@@ -4009,8 +4009,8 @@ def PCG_MultiFrame():
     ### Setup Variables Specific For npsfs or nobjects ###
     if Set.decon_type == 'npsfs':
     
-        check_Nframes_array = (N.ones(shape=(1,1), dtype=N.int),) + \
-                (N.ones(shape=len(Set.image_list), dtype=N.int),)
+        check_Nframes_array = (N.ones(shape=(1,1), dtype=N.int32),) + \
+                (N.ones(shape=len(Set.image_list), dtype=N.int32),)
         PSF_min_type = 'npsfs'
         obj_min_type = 'Object'
         Nobj = 1
@@ -4065,7 +4065,7 @@ def PCG_MultiFrame():
     elif Set.decon_type == 'nobjects':
 
         check_Nframes_array = (N.ones(shape=len(Set.image_list),
-                dtype=N.int),) + (N.ones(shape=(1,1),dtype=N.int),)
+                dtype=N.int32),) + (N.ones(shape=(1,1),dtype=N.int32),)
         PSF_min_type = 'PSF'
         obj_min_type = 'nobjects'
         Nobj = len(Set.image_list)

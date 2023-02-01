@@ -30,6 +30,7 @@ from Priithon_heritage import Mrc
 #from Priithon import fftw
 from Priithon_heritage import fftw
 
+
 import os, string, time, types
 # import pyfits  Clement: removed
 import astropy.io.fits as iofits
@@ -617,9 +618,9 @@ def ResizePSF(PSF, new_shape, pixel_center=None, fill=0.):
     array_center = tuple(np.floor(np.array(oldshape)/2.))
     tempPSF = np.empty(shape=oldshape, dtype=PSF.dtype)
     loweroffset = np.abs(np.floor((np.array(oldshape) - \
-            np.array(new_shape))/2.).astype(np.int))
+            np.array(new_shape))/2.).astype(np.int32))
     upperoffset = np.abs(np.floor((np.array(new_shape) - \
-            np.array(PSF.shape))/2.).astype(np.int))
+            np.array(PSF.shape))/2.).astype(np.int32))
 
     if pixel_center is None:        # estimate center (in pixels) based on 
                                     # centroid approach 
@@ -673,26 +674,26 @@ def ResizePSF(PSF, new_shape, pixel_center=None, fill=0.):
 
         if len(new_shape) == 2:
 
-            edge_length = np.floor(np.sqrt(tempPSF.shape)).astype(np.int)
+            edge_length = np.floor(np.sqrt(tempPSF.shape)).astype(np.int32)
             y_edge_range = [edge_length[-2], tempPSF.shape[-2]-edge_length[-2]]
             x_edge_range = [edge_length[-1], tempPSF.shape[-1]-edge_length[-1]]
             loweroffset = np.floor((np.array(new_shape) - \
-                    np.array(tempPSF.shape))/2.).astype(np.int)
+                    np.array(tempPSF.shape))/2.).astype(np.int32)
             upperoffset = np.abs(np.floor((np.array(tempPSF.shape) - \
-                    np.array(new_shape))/2.).astype(np.int))
+                    np.array(new_shape))/2.).astype(np.int32))
             PSFout = np.zeros(new_shape, dtype=PSF.dtype) + fill
             PSFout[loweroffset[-2]:(new_shape[-2]-upperoffset[-2]),
                     loweroffset[-1]:(new_shape[-1]-upperoffset[-1])] = tempPSF
         elif len(new_shape) ==3:
 
-            edge_length = np.floor(np.sqrt(tempPSF.shape)).astype(np.int)
+            edge_length = np.floor(np.sqrt(tempPSF.shape)).astype(np.int32)
             z_edge_range = [edge_length[-3], tempPSF.shape[-3]-edge_length[-3]]
             y_edge_range = [edge_length[-2], tempPSF.shape[-2]-edge_length[-2]]
             x_edge_range = [edge_length[-1], tempPSF.shape[-1]-edge_length[-1]]
             loweroffset = np.floor((np.array(new_shape) - \
-                    np.array(tempPSF.shape))/2.).astype(np.int)
+                    np.array(tempPSF.shape))/2.).astype(np.int32)
             upperoffset = np.abs(np.floor((np.array(tempPSF.shape) - \
-                    np.array(new_shape))/2.).astype(np.int))    
+                    np.array(new_shape))/2.).astype(np.int32))    
             PSFout = np.zeros(new_shape, dtype=PSF.dtype) + fill
             PSFout[loweroffset[-3]:(new_shape[-3]-upperoffset[-3]),
                     loweroffset[-2]:(new_shape[-2]-upperoffset[-2]), \
@@ -1168,7 +1169,7 @@ def RadiallyAverage2D(array, FT=True, origin=None, wrap=(False,),
         radial_mD[z] = AverageRadially(array[z], origin=origin, wrap=wrap[-2:])
                 #@
         radial_nD[z] = RadialArray(array.shape[-2:], 
-                lambda r:radial_mD[z][np.round(r).astype(np.int)], origin=origin,
+                lambda r:radial_mD[z][np.round(r).astype(np.int32)], origin=origin,
                 wrap=wrap[-2:]) #@
                 
     ## set all values outside of length cutoff or less than array_background
@@ -1680,8 +1681,8 @@ def ResizeImage(image, dimension=2, zresize=False, dtype=np.float64):
 
     offset = (np.array(shape) - np.array(new_shape))/2.
     new_image = np.empty(shape=tuple(np.maximum(shape, new_shape)), dtype=dtype)
-    lower = np.empty(shape=(dimension,), dtype=np.int)
-    upper = np.empty(shape=(dimension,), dtype=np.int)
+    lower = np.empty(shape=(dimension,), dtype=np.int32)
+    upper = np.empty(shape=(dimension,), dtype=np.int32)
     
     for i in range(1,dimension+1):
     
@@ -2194,7 +2195,7 @@ def ComputeMeanVariance3(x):
 
         shape = (int(np.round(np.log(n)/np.log(2)) + 1),) + x.shape[-x.ndim+1:]
 
-    terms = np.zeros(shape=shape[0], dtype=np.int)
+    terms = np.zeros(shape=shape[0], dtype=np.int32)
     sum_pair = np.zeros(shape=shape, dtype=np.float64)
     S_pair = np.zeros(shape=shape, dtype=np.float64)
     
