@@ -48,7 +48,7 @@ def _getGoodifiedArray(arr):
     except AttributeError:
             arr = N.ascontiguousarray(arr)
 
-    if arr.dtype == N.bool:  # no SWIGed function for bool, use uint8
+    if arr.dtype == bool:  # no SWIGed function for bool, use uint8
         arr = arr.view(N.uint8)
 
     return arr
